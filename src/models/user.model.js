@@ -11,6 +11,18 @@ const userSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    mobile: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: 10, // Assuming the mobile number has a minimum length requirement
+      maxlength: 15, // Assuming the mobile number has a maximum length requirement
+      validate(value) {
+        if (!/^\d{10,15}$/.test(value)) { // Example validation for mobile numbers
+          throw new Error('Invalid mobile number');
+        }
+      },
+    },
     email: {
       type: String,
       required: true,
